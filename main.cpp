@@ -46,7 +46,30 @@ void append(int data){
   newnode->prev = temp;
   temp->next = newnode;
 }
+
+
   
+void insert(int n, int data){
+  dll *newnode = new dll;
+  newnode->data = data;
+  newnode->next = NULL;
+  newnode->prev = NULL;
+
+  if(head == NULL){
+    head = newnode;
+    return;
+  }
+  dll *temp = new dll;
+  temp = head;
+  for(int k=1; k<=n-2; k++){
+    temp = temp->next;
+  }
+  newnode->prev = temp;
+  newnode->next = temp->next;
+  temp->next->prev = newnode;
+  temp->next = newnode;
+}
+
 
 void print(){
   dll *temp=head;
@@ -65,8 +88,9 @@ int main(){
   append(3);
   append(4);
   print();
-  // insert(3,12);
+  insert(3,12);
   // deletenode(3);
+  print();
   push(10);
   print();
 }
